@@ -10,6 +10,7 @@ class CustomAppButon extends StatefulWidget {
   final Function()? onPressed;
   final Color? backgroundColor;
   final FontWeight? fontWeight;
+  final bool isLoading;
   const CustomAppButon({
     super.key,
     this.textColor,
@@ -20,6 +21,7 @@ class CustomAppButon extends StatefulWidget {
     this.onPressed,
     this.backgroundColor,
     this.fontWeight,
+    this.isLoading = false,
   });
 
   @override
@@ -39,13 +41,15 @@ class _CustomAppButonState extends State<CustomAppButon> {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        onPressed: widget.onPressed,
-        child: AppText(
-          text: widget.buttonText,
-          color: widget.textColor,
-          fontSize: widget.fontSize,
-          fontWeight: widget.fontWeight,
-        ),
+        onPressed: widget.isLoading ? null : widget.onPressed,
+        child: widget.isLoading
+            ? CircularProgressIndicator()
+            : AppText(
+                text: widget.buttonText,
+                color: widget.textColor,
+                fontSize: widget.fontSize,
+                fontWeight: widget.fontWeight,
+              ),
       ),
     );
   }

@@ -9,7 +9,7 @@ class AppText extends StatelessWidget {
       {super.key,
       required this.text,
       this.color,
-      this.fontSize,
+      this.fontSize = 20,
       this.fontWeight});
 
   @override
