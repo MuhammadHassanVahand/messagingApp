@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List screens = [
       MessageScreen(),
-      SearchScreen(),
+      SearchScreen(currentUser: user),
       AccountScreen(
         email: email,
         fullName: fullName,

@@ -8,6 +8,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:messagingapp/customWidget/appText.dart';
 import 'package:messagingapp/customWidget/customButton.dart';
 import 'package:messagingapp/customWidget/customFormTextBuilder.dart';
+import 'package:messagingapp/screens/homePaga.dart';
 import 'package:messagingapp/screens/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -48,11 +49,17 @@ class _SignUpState extends State<SignUp> {
         "phone number": phoneNumber,
         "gender": gender,
       });
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: AppText(text: "Sign up successfull!"),
         ),
       );
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(

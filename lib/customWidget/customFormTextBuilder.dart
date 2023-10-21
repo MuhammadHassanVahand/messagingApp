@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 import 'package:messagingapp/customWidget/appText.dart';
@@ -196,6 +197,49 @@ class GenderDropDown extends StatelessWidget {
         ),
         SizedBox(
           height: 20,
+        ),
+      ],
+    );
+  }
+}
+
+class CustomSearchTextField extends StatefulWidget {
+  final TextEditingController? controller;
+  final void Function(String)? onSubmitted;
+
+  CustomSearchTextField({
+    super.key,
+    this.controller,
+    this.onSubmitted,
+  });
+
+  @override
+  State<CustomSearchTextField> createState() => _CustomSearchTextFieldState();
+}
+
+class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            controller: widget.controller,
+            decoration: const InputDecoration(
+              hintText: 'Search',
+              prefixIcon: Icon(Icons.search),
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            // Handle search here
+            if (widget.onSubmitted != null) {
+              widget.onSubmitted!(widget.controller?.text ?? "");
+            }
+          },
         ),
       ],
     );
